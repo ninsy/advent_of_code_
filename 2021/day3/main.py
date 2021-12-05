@@ -9,11 +9,12 @@ class Solver:
     def __init__(self, method, line_length):
         self.method = method
         self.counter = []
-        for i in range(line_length + 1):
+        print("init with: {}".format(line_length + 1))
+        for i in range(line_length):
             self.counter.append([0,0])
 
     def make_step(self, line):
-        bits = line.split("")
+        bits = list(line)
         for idx, bit in enumerate(bits):
             self.method(self, idx, bit)
 
@@ -43,8 +44,8 @@ def solve(lines, method):
 
 
 if __name__ == '__main__':
-    result1 = solve(read_lines('./input1.txt'), part_1_step)
+    result1 = solve(read_lines(), part_1_step)
     print(result1)
 
-    result2 = solve(read_lines(), part_2_step)
-    print(result2)
+    # result2 = solve(read_lines(), part_2_step)
+    # print(result2)
