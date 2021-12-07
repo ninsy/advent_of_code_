@@ -47,16 +47,20 @@ class Game:
         self.drawn_numbers = []
         self.boards = []
 
-    def next(self):
+    def mark_numbers(self, board, curr_num):
+        for row in board:
+            for number in row:
+                if number.value == curr_num:
+                    number.marked = True
+                    return
+
+    def next(self, part):
         curr_num = int(self.drawn_numbers[self.idx])
         for board in self.boards:
-            for row in board.board:
-                for number in row:
-                    if number.value == curr_num:
-                        # TODO: no more checks needed, exit loops
-                        number.marked = True
-
-            if board.is_winning():
+            self.mark_numbers(board.board, curr_num)
+        # TODO: how this can be refactored? seems higly insufficient to loop twice at boards. better way to clear?
+        for board in self.boards:
+            if part == 1 and self.check_part1(board) or part == 2 and self.check_part2(board):
                 unmarked_sum = 0
                 for row in board.board:
                     for number in row:
@@ -66,6 +70,18 @@ class Game:
         self.idx += 1
         return None
         
+    def check_part1(self, board):
+        return board.is_winning()
+                
+    def check_part2(self, board):
+        if len(self.boards) == 1:
+            return True
+        if board.is_winning():
+            for idx, b in enumerate(self.boards):
+                if id(b.board) == id(board.board):
+                    del self.boards[idx]
+            return None
+
 
 def parse_input(lines):
     g = Game()
@@ -85,18 +101,18 @@ def parse_input(lines):
     return g
 
 
-def part1(lines):
+def solve(lines, part):
     game = parse_input(lines)
 
     while game.idx < len(game.drawn_numbers) - 1:
-        winner = game.next()
+        winner = game.next(part)
         if winner != None:
             return winner
 
 
 if __name__ == '__main__':
-    result = part1(read_lines())
-    print(result)
+    result1 = solve(read_lines(), 1)
+    print(result1)
 
-    # result = part2(read_lines())
-    # print(result)
+    result2 = solve(read_lines(), 2)
+    print(result2)
