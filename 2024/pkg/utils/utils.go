@@ -3,6 +3,7 @@ package utils
 import (
 	"bufio"
 	"fmt"
+	"iter"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -58,4 +59,15 @@ func GetInputFilePath() string {
 	currDir := filepath.Dir(currFile)
 
 	return filepath.Join(currDir, "input.txt")
+}
+
+func Map[T, U any](seq iter.Seq[T], f func(T) U) iter.Seq[U] {
+	return func(yield func(U) bool) {
+		for a := range seq {
+			mapped := f(a)
+			if !yield(mapped) {
+				return
+			}
+		}
+	}
 }
