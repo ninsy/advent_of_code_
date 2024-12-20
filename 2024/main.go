@@ -3,7 +3,6 @@ package main
 import (
 	"aoc_go_2024/pkg/days/day1"
 	"aoc_go_2024/pkg/days/day2"
-	"aoc_go_2024/pkg/utils"
 	"fmt"
 	"os"
 )
@@ -21,8 +20,6 @@ var solutions = map[int]Day{
 }
 
 func main ()  {
-	utils.PrintMsg("Initial")
-
 	argLen := len(os.Args)
 	if argLen < 2 || argLen > 3  {
 		fmt.Println("Usage: go run main.go <day> [part]")

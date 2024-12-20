@@ -9,10 +9,6 @@ import (
 	"runtime"
 )
 
-func PrintMsg(msg string) {
-	fmt.Println(msg)
-}
-
 type WithErr[T any] struct {
     Value  T
     Err error

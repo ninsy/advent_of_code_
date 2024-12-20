@@ -12,11 +12,8 @@ func SolvePart2() {
 	fmt.Println("Solution part 2")
 	numbers := utils.MustHaveFile(utils.GetInputFilePath())
 
-	leftColumnNumbers := make([]int, 0, len(numbers))
-	
+	leftColumnNumbers := make([]int, 0, len(numbers))	
 	rightColumnOccurences := make(map[int]int)
-	
-	rightColumnOccurences[1] = 1;
 
 	for _, pair := range numbers {		
 		splitPairSeq := utils.Map(slices.Values(strings.Fields(pair)), func(c string) int { return utils.Must(strconv.Atoi(c)) })
