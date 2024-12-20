@@ -10,26 +10,18 @@ func SolvePart2() {
 
 	inputContent := utils.MustHaveFile(utils.GetInputFilePath())
 	safeCount := 0
-
-
 	processCount := 0
-	// TODO: doesnt remove faulty properly?
+
 	for _, reportLine := range inputContent {
 		level := parseLevels(reportLine)
-
-		ok, idx := testLevel(level)
-		if (ok) {
-			// fmt.Println("Is ok: ", level)
+		wholeOk, _ := testLevel(level)
+		if wholeOk {
 			safeCount++
+			continue
 		} else {
-			fmt.Println("Before 'splice': ", level)
-			withoutFaulty := append(level[:idx], level[idx+1:]...)
-			nowOk, _ := testLevel(withoutFaulty)
-			if nowOk {
-				// fmt.Println("Is ok: ", withoutFaulty)
+			ok := testLevelCombinations(level)
+			if ok {
 				safeCount++
-			} else {
-				fmt.Println("Fucked up anyway:", withoutFaulty)
 			}
 		}
 		processCount++
@@ -39,23 +31,18 @@ func SolvePart2() {
 }
 
 func splice(s []int, idx int) []int {
-	return append(s[:idx], s[idx+1:]...)
+	dst := make([]int, len(s))
+	copy(dst, s) 
+	return append(dst[:idx], dst[idx+1:]...)
 }
 
-// TODO: it doesnt cover case when item at idx 0 fucks up everything
-// TODO: would need to iterate over whole level, remove item, check if it runs, count failed seq, if failed seq > 1 -> asssume row is failed 
-
-func testLevel(level []int) (bool, int) {
-	var prevSign *int = nil
-	for i := 1; i < len(level); i++ {
-		diff, sign := absWithSign(level[i] - level[i - 1])
-		if diff < 1 || diff > 3 {
-			return false, i
+func testLevelCombinations(level []int) bool {
+	for i := 0; i < len(level); i++ {
+		currCombination := splice(level, i)
+		ok, _ := testLevel(currCombination)
+		if ok {
+			return true
 		}
-		if prevSign != nil && *prevSign != sign {
-			return false, i
-		}
-		prevSign = &sign
 	}
-	return true, -1
+	return false
 }

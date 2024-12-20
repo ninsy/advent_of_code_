@@ -16,23 +16,8 @@ func SolvePart1() {
 
 	for _, reportLine := range inputContent {
 		level := parseLevels(reportLine)
-		var prevSign *int
-		broke := false
-
-		for i := 1; i < len(level); i++ {
-			diff, sign := absWithSign(level[i] - level[i - 1])
-			if diff < 1 || diff > 3 {
-				broke = true
-				break
-			}
-			if prevSign != nil && *prevSign != sign {
-				broke = true
-				break	
-			}
-			prevSign = &sign
-		}
-
-		if (!broke) {
+		ok, _ := testLevel(level)
+		if ok {
 			safeCount++
 		}
 	}
@@ -50,4 +35,19 @@ func absWithSign(x int) (int, int) {
 func parseLevels(reportLine string) []int {
 	reportLevelsSeq := utils.Map(slices.Values(strings.Fields(reportLine)), func(c string) int { return utils.Must(strconv.Atoi(c)) })
 	return slices.Collect(reportLevelsSeq)
+}
+
+func testLevel(level []int) (bool, int) {
+	var prevSign *int = nil
+	for i := 1; i < len(level) ; i++ {
+		diff, sign := absWithSign(level[i] - level[i - 1])
+		if diff < 1 || diff > 3 {
+			return false, i
+		}
+		if prevSign != nil && *prevSign != sign {
+			return false, i
+		}
+		prevSign = &sign
+	}
+	return true, -1
 }
