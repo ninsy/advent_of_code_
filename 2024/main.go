@@ -17,6 +17,98 @@ var solutions = map[int]Day{
 		Part1: day2.SolvePart1,
 		Part2: day2.SolvePart2,
 	},
+	3: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	4: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	5: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	6: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	7: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	8: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	9: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	10: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	11: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	12: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	13: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	14: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	15: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	16: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	17: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	18: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	19: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	20: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	21: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	22: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	23: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	24: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
+	25: {
+		Part1: day2.SolvePart1,
+		Part2: day2.SolvePart2,
+	},
 }
 
 func main ()  {
